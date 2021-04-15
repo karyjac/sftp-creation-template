@@ -221,7 +221,8 @@
             "apiVersion": "2019-12-01",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[variables('cliContainerGroupName')]"
+                "[variables('cliContainerGroupName')]",
+                "[resourceId('Microsoft.Network/networkProfiles', variables('networkProfileName'))]"
             ],
             "properties": {
                 "containers": [
@@ -257,6 +258,9 @@
                     }
                 ],
                 "osType": "Linux",
+                "networkProfile": {
+                    "id": "[resourceId('Microsoft.Network/networkProfiles', variables('networkProfileName'))]"
+                },
                 "ipAddress": {
                     "type": "Public",
                     "ports": [
